@@ -15,6 +15,8 @@ import java.util.stream.LongStream;
  * If our input was [3, 2, 1], the expected output would be [2, 3, 6].
  * <p>
  * Follow-up: what if you can't use division?
+ * <p>
+ * Level: Hard
  */
 public class ArrayProductItems {
 
