@@ -15,15 +15,13 @@ public class MinInPivotedSortedArray {
     public int getMin(int[] arr) {
         int lo = 0;
         int hi = arr.length - 1;
-        int mid = (lo + hi) / 2;
         while (lo < hi) {
-
+            int mid = lo + (hi - lo) / 2;
             if (arr[mid] > arr[hi]) {
                 lo = mid + 1;
             } else {
                 hi = mid;
             }
-            mid = (lo + hi) / 2;
         }
         return arr[hi];
     }
