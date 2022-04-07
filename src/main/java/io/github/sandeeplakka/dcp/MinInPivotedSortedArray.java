@@ -20,7 +20,7 @@ public class MinInPivotedSortedArray {
             if (arr[mid] > arr[hi]) {
                 lo = mid + 1;
             } else {
-                hi = mid;
+                hi = mid; // not mid-1 because we don't want to miss out on the min element
             }
         }
         return arr[hi];
