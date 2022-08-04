@@ -18,7 +18,7 @@ class ArraysIntersectionTest {
     }
 
     @Test
-    void test_findIntersection_for_same_lements() {
+    void test_findIntersection_for_same_elements() {
         int[] arr1 = {1, 2, 3};
         int[] arr2 = {2, 3, 1};
         int[] expected = {1, 2, 3};
