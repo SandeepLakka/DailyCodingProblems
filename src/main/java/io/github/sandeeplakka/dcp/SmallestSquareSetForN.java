@@ -17,8 +17,7 @@ public class SmallestSquareSetForN {
     public static void main(String[] args) {
         SmallestSquareSetForN ut = new SmallestSquareSetForN();
         System.out.println(ut.getNumberOfPerfectSquaresForN(5));
-        //System.out.println(ut.getNumberOfPerfectSquaresForN(5));
-        //System.out.println(ut.getNumberOfPerfectSquaresForN(17));
+        System.out.println(ut.getNumberOfPerfectSquaresForN(17));
 
     }
 
@@ -29,24 +28,23 @@ public class SmallestSquareSetForN {
             squares.add(i * i);
         }
 
-        int[][] vals = new int[n + 1][squares.size() + 1];
-        Arrays.stream(vals).forEach(ints -> Arrays.fill(ints, -1));
+        int[][] values = new int[n + 1][squares.size() + 1];
+        Arrays.stream(values).forEach(ints -> Arrays.fill(ints, -1));
 
-        int minVariations = findMinVariations(vals, 0, squares, n, squares.size() - 1);
-        return minVariations;
+        return findMinVariations(values, 0, squares, n, squares.size() - 1);
     }
 
-    private int findMinVariations(int[][] vals, int res, List<Integer> squares, int n, int idx) {
+    private int findMinVariations(int[][] values, int res, List<Integer> squares, int n, int idx) {
         if (n <= 0 || idx <= 0) {
             return 1;
         }
-        if (vals[n][idx] != -1) {
-            return vals[n][idx];
+        if (values[n][idx] != -1) {
+            return values[n][idx];
         }
-        int selected = 1+findMinVariations(vals, res+1, squares, n - squares.get(idx), idx);
-        int unselected = findMinVariations(vals, res, squares, n, idx - 1);
+        int selected = 1+findMinVariations(values, res+1, squares, n - squares.get(idx), idx);
+        int unselected = findMinVariations(values, res, squares, n, idx - 1);
         System.out.println("Selected : "+selected+", Unselected : "+unselected);
-        return vals[n][idx] = Math.min(
+        return values[n][idx] = Math.min(
                 //Selection case
                 selected,
                 //Non Selection case
