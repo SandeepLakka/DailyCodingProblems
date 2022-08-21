@@ -1,6 +1,8 @@
 package io.github.sandeeplakka.dcp;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Write a program that determines the smallest number of perfect squares that sum up to N.
@@ -16,7 +18,7 @@ public class SmallestSquareSetForN {
     public int getNumberOfPerfectSquaresForN(int n) {
         //procuring squares under input N
         List<Integer> squares = new ArrayList<>();
-        for (int i = 1; i * i < n; i++) {
+        for (int i = 1; i * i <= n; i++) {
             squares.add(i * i);
         }
 

@@ -16,11 +16,11 @@ class SmallestSquareSetForNTest {
 
     @Test
     void tests_getNumberOfPerfectSquaresForN_for_basic_cases() {
-        assertEquals(4, ut.getNumberOfPerfectSquaresForN(4));   // 1+1+1+1
+        assertEquals(1, ut.getNumberOfPerfectSquaresForN(4));   // 4
         assertEquals(3, ut.getNumberOfPerfectSquaresForN(12));  // 4+4+4
         assertEquals(3, ut.getNumberOfPerfectSquaresForN(6));   // 1+1+4
         assertEquals(2, ut.getNumberOfPerfectSquaresForN(17));  // 1+16
         assertEquals(2, ut.getNumberOfPerfectSquaresForN(18));  // 9+9
-        assertEquals(2, ut.getNumberOfPerfectSquaresForN(100)); // 36+64
+        assertEquals(1, ut.getNumberOfPerfectSquaresForN(100)); // 100
     }
 }
