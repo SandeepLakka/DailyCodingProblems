@@ -13,42 +13,42 @@ import java.util.*;
  */
 public class SmallestSquareSetForN {
 
-
-    public static void main(String[] args) {
-        SmallestSquareSetForN ut = new SmallestSquareSetForN();
-        System.out.println(ut.getNumberOfPerfectSquaresForN(5));
-        System.out.println(ut.getNumberOfPerfectSquaresForN(17));
-
-    }
-
-    //TODO add impl
     public int getNumberOfPerfectSquaresForN(int n) {
+        //procuring squares under input N
         List<Integer> squares = new ArrayList<>();
         for (int i = 1; i * i < n; i++) {
             squares.add(i * i);
         }
 
+        //memo
         int[][] values = new int[n + 1][squares.size() + 1];
+        //initialization
         Arrays.stream(values).forEach(ints -> Arrays.fill(ints, -1));
 
-        return findMinVariations(values, 0, squares, n, squares.size() - 1);
+        //memoized recursive calls to find the minimum number of squares sum to equal to N
+        return findMinVariations(values, squares, n, squares.size());
     }
 
-    private int findMinVariations(int[][] values, int res, List<Integer> squares, int n, int idx) {
-        if (n <= 0 || idx <= 0) {
-            return 1;
+    private int findMinVariations(int[][] values, List<Integer> squares, int n, int idx) {
+        //idx   : if all choices are exhausted, then there's no solution in this iteration, return MAX_VALUE - 1
+        //n     : if n goes below 0, then there's no solution in this iteration, return MAX_VALUE - 1
+        if (n < 0 || idx == 0) {
+            return Integer.MAX_VALUE - 1;
         }
+        //If n becomes 0, then it means there's a definite match
+        if (n == 0) {
+            return 0;
+        }
+        //Use memo to avoid re-computation
         if (values[n][idx] != -1) {
             return values[n][idx];
         }
-        int selected = 1+findMinVariations(values, res+1, squares, n - squares.get(idx), idx);
-        int unselected = findMinVariations(values, res, squares, n, idx - 1);
-        System.out.println("Selected : "+selected+", Unselected : "+unselected);
-        return values[n][idx] = Math.min(
-                //Selection case
-                selected,
-                //Non Selection case
-                unselected
-        );
+        //Iteration in which we consider the current square value (squares.get(idx-1)) in min set
+        int selected = 1 + findMinVariations(values, squares, n - squares.get(idx - 1), idx);
+        //Iteration in which we do not consider the current square value (squares.get(idx-1)) in min set
+        int unselected = findMinVariations(values, squares, n, idx - 1);
+
+        //Taking the minimum value of the above select/unselect cases
+        return values[n][idx] = Math.min(selected, unselected);
     }
 }
